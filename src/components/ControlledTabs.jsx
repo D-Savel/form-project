@@ -34,7 +34,7 @@ export const ControledTabs = (props) => {
 
   return (
     <Tabs orientation={tabsOrientation} align='center' isFitted index={tabIndex} onChange={handleTabsChange}>
-      <Box display={tabsOrientation === 'vertical' && 'flex'} w={tabsOrientation !== 'vertical' && '80%'} h={tabsOrientation === 'vertical' && '80vh'} >
+      <Box display={tabsOrientation === 'vertical' && 'flex'} w={tabsOrientation !== 'vertical' && '75%'} h={tabsOrientation === 'vertical' && '50%'} >
         <Box ml='3' mr='1' className={tabsOrientation === 'vertical' ? 'vertical-slider-wrapper' : 'horizontal-slider-wrapper'}>
           <input
             className={tabsOrientation === 'vertical' ? 'vertical-tabsRangeInput' : 'horizontal-tabsRangeInput'}
@@ -43,7 +43,7 @@ export const ControledTabs = (props) => {
             max='3'
             value={tabIndex}
             onChange={handleSliderChange}
-            orient='vertical'
+            orient={tabsOrientation === 'vertical' && 'vertical'}
           />
         </Box>
         <TabList>

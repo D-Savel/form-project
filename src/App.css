@@ -20,3 +20,8 @@
   appearance: range;
   -webkit-appearance: slider-vertical;
 }
+
+.horizontal-tabsRangeInput {
+  writing-mode: bt-lr;
+  appearance: range;
+}
