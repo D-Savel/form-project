@@ -34,8 +34,15 @@ export const ControledTabs = (props) => {
 
   return (
     <Tabs orientation={tabsOrientation} align='center' isFitted index={tabIndex} onChange={handleTabsChange}>
-      <Box display={tabsOrientation === 'vertical' && 'flex'} w={tabsOrientation !== 'vertical' && '75%'} h={tabsOrientation === 'vertical' && '50%'} >
-        <Box ml='3' mr='1' className={tabsOrientation === 'vertical' ? 'vertical-slider-wrapper' : 'horizontal-slider-wrapper'}>
+      <Box
+        display={tabsOrientation === 'vertical' && 'flex'}
+        orientation={tabsOrientation === 'vertical' && 'column'}
+        w={tabsOrientation !== 'vertical' && '100vw'} h={tabsOrientation === 'vertical' && '90vh'} >
+        <Box
+          className={tabsOrientation === 'vertical' ? 'vertical-slider-wrapper' : 'horizontal-slider-wrapper'}
+          ml='3'
+          mr='1'
+          mt={tabsOrientation === 'vertical' && '10vh'}>
           <input
             className={tabsOrientation === 'vertical' ? 'vertical-tabsRangeInput' : 'horizontal-tabsRangeInput'}
             type='range'
@@ -55,17 +62,17 @@ export const ControledTabs = (props) => {
           </Wrapper>
         </TabList>
       </Box>
-      <TabPanels>
-        <TabPanel pl='3' w='70%' align='left' h='100vh' borderLeft={tabsOrientation === 'vertical' && '1px'} borderLeftColor='gray.200'>
+      <TabPanels minH='100vh' w='70vw'>
+        <TabPanel pl='3' align='left' borderLeft={tabsOrientation === 'vertical' && '1px'} borderLeftColor='gray.200'>
           <IdentityForm setTabIndex={setTabIndex} tabIndex={tabIndex} />
         </TabPanel>
-        <TabPanel pl='3' w='70%' align='left' h='100vh' borderLeft={tabsOrientation === 'vertical' && '1px'} borderLeftColor='gray.200'>
+        <TabPanel pl='3' align='left' borderLeft={tabsOrientation === 'vertical' && '1px'} borderLeftColor='gray.200'>
           < AddressForm setTabIndex={setTabIndex} tabIndex={tabIndex} />
         </TabPanel>
-        <TabPanel pl='3' w='70%' align='left' h='120vh' borderLeft={tabsOrientation === 'vertical' && '1px'} borderLeftColor='gray.200'>
+        <TabPanel pl='3' align='left' borderLeft={tabsOrientation === 'vertical' && '1px'} borderLeftColor='gray.200'>
           <CompanyForm setTabIndex={setTabIndex} tabIndex={tabIndex} />
         </TabPanel>
-        <TabPanel pl='3' w='70%' align='left' h='100vh' borderLeft={tabsOrientation === 'vertical' && '1px'} borderLeftColor='gray.200'>
+        <TabPanel pl='3' align='left' borderLeft={tabsOrientation === 'vertical' && '1px'} borderLeftColor='gray.200'>
           <PaymentValidationForm setTabIndex={setTabIndex} tabIndex={tabIndex} />
         </TabPanel>
       </TabPanels>

@@ -2,9 +2,6 @@ import { useContext } from 'react'
 import { FormDataContext } from './../context/FormDataContext'
 import { IsFormValidateContext } from './../context/IsFormValidateContext'
 import { Formik, Form } from 'formik'
-import {
-  Flex
-} from '@chakra-ui/react'
 import * as Yup from 'yup'
 import { RadioForm } from './form/RadioForm'
 import { TextInputForm } from './form/TextInputForm'
@@ -47,89 +44,85 @@ export const CompanyForm = (props) => {
   const isFormToUpdate = isFormValidate.companyForm
 
   return (
-    <>
-      <Formik
-        initialValues={{
-          companyName: '',
-          companyStreetNumber: '',
-          companyStreetName: '',
-          companyZipCode: '',
-          companyCountry: '',
-          companyStatus: '',
-          companyCreationDate: ''
-        }}
-        validationSchema={Yup.object({
-          companyName: Yup.string()
-            .max(25, 'Must be 25 characters or less')
-            .required('Required'),
-          companyStreetNumber: Yup.number()
-            .required('Required'),
-          companyStreetName: Yup.string()
-            .max(25, 'Must be 25 characters or less')
-            .required('Required'),
-          companyZipCode: Yup.number()
-            .max(99000, 'this zip code doesn\'t exist')
-            .required('Required'),
-          companyCountry: Yup.string()
-            .required('Required'),
-          companyStatus: Yup.string()
-            .required('Required')
-            .oneOf(['EI', 'EIRL', 'EURL', 'SARL', 'SA', 'SAS', 'SASU']),
-          companyCreationDate: Yup.date()
-            .required('Required')
-        })}
-        onSubmit={(values, { setSubmitting }) => {
-          e => e.preventDefault()
-          values = { ...formData, ...values }
-          setFormData(values)
-          setSubmitting(false);
-          setTabIndex(tabIndex => tabIndex + 1)
-          setIsFormValidate({ ...isFormValidate, companyForm: true })
-        }}
-      >
-        <Flex w='70%' direction='column' justify='center' align='start'>
-          <Form>
-            <TextInputForm
-              label="Company name"
-              name="companyName"
-              type="text"
-            />
-            <TextInputForm
-              label="Company street number"
-              name="companyStreetNumber"
-              type="number"
-            />
-            <TextInputForm
-              label="Company street name"
-              name="companyStreetName"
-              type="text"
-            />
-            <TextInputForm
-              label="Company Zip code"
-              name="companyZipCode"
-              type="number"
-            />
-            <SelectForm label="Company country" name="companyCountry">
-              < option value="">Select a country</option>
-              {country.map((country) => {
-                return (
-                  <option key={country} value={country}>{country}</option>)
-              }
-              )}
-            </SelectForm>
-            <RadioForm
-              name="companyStatus"
-              label="Company status"
-              options={firmStatusOptions} />
-            <DateInputForm
-              label="Creation date of the company"
-              name="companyCreationDate"
-              type="date"
-            />
-            <ControlledTabsButtons isFormToUpdate={isFormToUpdate} setTabIndex={setTabIndex} tabIndex={tabIndex} />
-          </Form>
-        </Flex>
-      </Formik>
-    </>
+    <Formik
+      initialValues={{
+        companyName: '',
+        companyStreetNumber: '',
+        companyStreetName: '',
+        companyZipCode: '',
+        companyCountry: '',
+        companyStatus: '',
+        companyCreationDate: ''
+      }}
+      validationSchema={Yup.object({
+        companyName: Yup.string()
+          .max(25, 'Must be 25 characters or less')
+          .required('Required'),
+        companyStreetNumber: Yup.number()
+          .required('Required'),
+        companyStreetName: Yup.string()
+          .max(25, 'Must be 25 characters or less')
+          .required('Required'),
+        companyZipCode: Yup.number()
+          .max(99000, 'this zip code doesn\'t exist')
+          .required('Required'),
+        companyCountry: Yup.string()
+          .required('Required'),
+        companyStatus: Yup.string()
+          .required('Required')
+          .oneOf(['EI', 'EIRL', 'EURL', 'SARL', 'SA', 'SAS', 'SASU']),
+        companyCreationDate: Yup.date()
+          .required('Required')
+      })}
+      onSubmit={(values, { setSubmitting }) => {
+        e => e.preventDefault()
+        values = { ...formData, ...values }
+        setFormData(values)
+        setSubmitting(false);
+        setTabIndex(tabIndex => tabIndex + 1)
+        setIsFormValidate({ ...isFormValidate, companyForm: true })
+      }}
+    >
+      <Form>
+        <TextInputForm
+          label="Company name"
+          name="companyName"
+          type="text"
+        />
+        <TextInputForm
+          label="Company street number"
+          name="companyStreetNumber"
+          type="number"
+        />
+        <TextInputForm
+          label="Company street name"
+          name="companyStreetName"
+          type="text"
+        />
+        <TextInputForm
+          label="Company Zip code"
+          name="companyZipCode"
+          type="number"
+        />
+        <SelectForm label="Company country" name="companyCountry">
+          < option value="">Select a country</option>
+          {country.map((country) => {
+            return (
+              <option key={country} value={country}>{country}</option>)
+          }
+          )}
+        </SelectForm>
+        <RadioForm
+          name="companyStatus"
+          label="Company status"
+          options={firmStatusOptions} />
+        <DateInputForm
+          label="Creation date of the company"
+          name="companyCreationDate"
+          type="date"
+        />
+        <ControlledTabsButtons isFormToUpdate={isFormToUpdate} setTabIndex={setTabIndex} tabIndex={tabIndex} />
+      </Form>
+    </Formik>
   )
 }
